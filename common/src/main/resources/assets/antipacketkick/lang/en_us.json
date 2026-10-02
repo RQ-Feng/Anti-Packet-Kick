@@ -9,5 +9,5 @@
   "antipacketkick.config.chatNotifications.tooltip": "Show a chat message whenever a bad packet is detected.",
   "antipacketkick.message.badPacket": "[Anti Packet Kick] Detected a bad packet (%s).",
   "key.antipacketkick.config": "Open Config",
-  "category.antipacketkick": "Anti Packet Kick"
+  "key.category.antipacketkick.main": "Anti Packet Kick"
 }

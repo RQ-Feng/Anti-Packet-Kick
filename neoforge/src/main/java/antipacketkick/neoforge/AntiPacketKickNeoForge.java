@@ -13,6 +13,7 @@ import antipacketkick.platform.Platform;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -41,11 +42,16 @@ public class AntiPacketKickNeoForge {
     }
 
     private void onRegisterKeys(RegisterKeyMappingsEvent event) {
+        // NeoForge 弃用了 KeyMapping.Category.register(...)，改由本事件注册类别。
+        KeyMapping.Category category =
+            new KeyMapping.Category(Identifier.fromNamespaceAndPath(AntiPacketKick.MOD_ID, "main"));
+        event.registerCategory(category);
+
         openConfigKey = new KeyMapping(
             "key." + AntiPacketKick.MOD_ID + ".config",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_K,
-            "category." + AntiPacketKick.MOD_ID
+            category
         );
         event.register(openConfigKey);
     }

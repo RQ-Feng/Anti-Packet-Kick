@@ -9,5 +9,5 @@
   "antipacketkick.config.chatNotifications.tooltip": "检测到坏包时在聊天栏显示提示。",
   "antipacketkick.message.badPacket": "[Anti Packet Kick] 检测到坏包（%s）。",
   "key.antipacketkick.config": "打开配置",
-  "category.antipacketkick": "Anti Packet Kick"
+  "key.category.antipacketkick.main": "Anti Packet Kick"
 }

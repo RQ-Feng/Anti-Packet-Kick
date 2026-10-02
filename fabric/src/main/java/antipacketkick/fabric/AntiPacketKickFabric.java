@@ -16,6 +16,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class AntiPacketKickFabric implements ClientModInitializer {
@@ -30,7 +31,7 @@ public class AntiPacketKickFabric implements ClientModInitializer {
             "key." + AntiPacketKick.MOD_ID + ".config",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_K,
-            "category." + AntiPacketKick.MOD_ID
+            KeyMapping.Category.register(Identifier.fromNamespaceAndPath(AntiPacketKick.MOD_ID, "main"))
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {

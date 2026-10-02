@@ -57,15 +57,15 @@ AntiPacketKick/
 > 必须**先进入 `AntiPacketKick/` 目录**再执行，或在仓库根目录用 `-p AntiPacketKick`。
 > 直接在仓库根目录敲 `./gradlew :fabric:build`，跑的会是 meteor 自己的构建（它没有 `:fabric` 子项目），必然失败。
 
-环境要求：**JDK 21+**（MC 1.21.8 强制要求）。
+环境要求：**JDK 21+**（MC 1.21.11 强制要求）。
 
 ```bash
 cd AntiPacketKick
 
-# 构建 Fabric 版 -> fabric/build/libs/antipacketkick-fabric-1.0.0+1.21.8.jar
+# 构建 Fabric 版 -> fabric/build/libs/antipacketkick-fabric-1.0.0+1.21.11.jar
 ./gradlew :fabric:build
 
-# 构建 NeoForge 版 -> neoforge/build/libs/antipacketkick-neoforge-1.0.0+1.21.8.jar
+# 构建 NeoForge 版 -> neoforge/build/libs/antipacketkick-neoforge-1.0.0+1.21.11.jar
 ./gradlew :neoforge:build
 
 # 同时构建双端
@@ -102,12 +102,12 @@ cd AntiPacketKick
 
 | 组件 | 版本 |
 |------|------|
-| Minecraft | 1.21.8 |
+| Minecraft | 1.21.11 |
 | Fabric Loader | 0.19.5 |
-| Fabric API | 0.136.1+1.21.8 |
+| Fabric API | 0.141.6+1.21.11 |
 | Fabric Loom | 1.14.10 |
-| NeoForge | 21.8.54 |
-| Cloth Config | 19.0.147 |
+| NeoForge | 21.11.45 |
+| Cloth Config | 21.11.153 |
 
 > **提示**：Loom 维持在 `1.14.10` 是因为 `1.15+` 开始强制要求 Gradle 守护进程跑在 JDK 25 上。如果你的构建机已经是 JDK 25，可以升到 `1.18.2`。
 
@@ -121,7 +121,10 @@ cd AntiPacketKick
 2. **常量硬编码**：机制 1 匹配的是 `intValue=8388608`，如果 Mojang 改了这个默认值，Mixin 就会失灵。
 3. **方法签名**：机制 2 的 `readNbt` 方法签名跨大版本经常改动。
 4. **底层稳定项**：机制 4 拦截的是标准的 Netty `exceptionCaught`，基本不受 MC 升级影响。
-5. **KeyMapping 改动**：1.21.9+ 的 `KeyMapping` 构造函数中，category 参数从 `String` 改为了 `KeyMapping.Category` 枚举。
+5. **KeyMapping 改动**：1.21.9+ 的 `KeyMapping` 构造函数中，category 参数从 `String` 改为了 `KeyMapping.Category`（一个包着 `Identifier` 的 record）；语言键也从 `category.<modid>` 变成了 `key.category.<modid>.<path>`。
+   * Fabric 端：原版 `KeyMapping.Category.register(Identifier)`。
+   * NeoForge 端：`register(...)` 被标为 `@Deprecated`，改用 `RegisterKeyMappingsEvent#registerCategory(new KeyMapping.Category(...))`。
+6. **API 重命名**：1.21.9+ 起 Mojmap 中的 `ResourceLocation` 更名为 `Identifier`。
 
 ---
 

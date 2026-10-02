@@ -16,14 +16,14 @@ Contains code derived from Meteor Client, licensed under GPL-3.0.
 [[dependencies.antipacketkick]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.8,)"
+versionRange = "[21.11,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.antipacketkick]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.8,1.21.9)"
+versionRange = "[1.21.11,1.21.12)"
 ordering = "NONE"
 side = "CLIENT"
 
