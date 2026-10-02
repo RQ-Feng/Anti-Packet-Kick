@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+base {
+    archivesName = "${rootProject.archives_base_name}-neoforge"
+}
+
+// 复用 common/ 里的共享源码（mixin + 逻辑 + Cloth Config 屏幕）。
+sourceSets {
+    main {
+        java.srcDir rootProject.file('common/src/main/java')
+        resources.srcDir rootProject.file('common/src/main/resources')
+    }
+}
+
+neoForge {
+    version = rootProject.neoforge_version
+
+    runs {
+        client {
+            client()
+        }
+    }
+
+    mods {
+        "${rootProject.mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    // Cloth Config 的 NeoForge 制品（mod 依赖，compile + runtime 都需要）。
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:${rootProject.cloth_config_version}"
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand 'version': project.version
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "antipacketkick.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "CompressionDecoderMixin",
+    "ConnectionExceptionMixin",
+    "FriendlyByteBufMixin",
+    "PacketBundlingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

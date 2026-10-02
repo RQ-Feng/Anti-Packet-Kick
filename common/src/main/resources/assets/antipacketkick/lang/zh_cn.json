@@ -1,0 +1,13 @@
+{
+  "antipacketkick.config.title": "Anti Packet Kick",
+  "antipacketkick.config.category.general": "通用",
+  "antipacketkick.config.catchExceptions": "捕获异常",
+  "antipacketkick.config.catchExceptions.tooltip": "吞掉损坏包引发的异常，而不是直接断线。",
+  "antipacketkick.config.logExceptions": "记录异常",
+  "antipacketkick.config.logExceptions.tooltip": "把捕获到的异常写入游戏日志。",
+  "antipacketkick.config.chatNotifications": "聊天栏提示",
+  "antipacketkick.config.chatNotifications.tooltip": "检测到坏包时在聊天栏显示提示。",
+  "antipacketkick.message.badPacket": "[Anti Packet Kick] 检测到坏包（%s）。",
+  "key.antipacketkick.config": "打开配置",
+  "category.antipacketkick": "Anti Packet Kick"
+}

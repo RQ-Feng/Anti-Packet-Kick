@@ -1,0 +1,47 @@
+plugins {
+    id 'fabric-loom' version '1.14.10'
+}
+
+base {
+    archivesName = "${rootProject.archives_base_name}-fabric"
+}
+
+// 复用 common/ 里的共享源码（mixin + 逻辑 + Cloth Config 屏幕）。
+sourceSets {
+    main {
+        java.srcDir rootProject.file('common/src/main/java')
+        resources.srcDir rootProject.file('common/src/main/resources')
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+    // 官方 mojmap，保证 common 代码与 NeoForge 端一致。
+    mappings loom.officialMojangMappings()
+
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    modImplementation "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
+}
+
+loom {
+    runs {
+        client {
+            client()
+            ideConfigGenerated true
+        }
+    }
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+jar {
+    from(rootProject.file('LICENSE')) {
+        rename { "${it}_${rootProject.archives_base_name}" }
+    }
+}

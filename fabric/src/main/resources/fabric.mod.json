@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "antipacketkick",
+  "version": "${version}",
+  "name": "Anti Packet Kick",
+  "description": "Prevents disconnects caused by oversized or corrupted network packets. Contains code derived from Meteor Client, licensed under GPL-3.0.",
+  "authors": [
+    "AntiPacketKick contributors"
+  ],
+  "contributors": [
+    "Meteor Development (Meteor Client code, https://github.com/MeteorDevelopment/meteor-client)"
+  ],
+  "license": "GPL-3.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "antipacketkick.fabric.AntiPacketKickFabric"
+    ]
+  },
+  "mixins": [
+    "antipacketkick.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.8",
+    "java": ">=21",
+    "cloth-config": ">=19.0.0"
+  }
+}

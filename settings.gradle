@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        maven { url = uri('https://maven.fabricmc.net/') }
+        maven { url = uri('https://maven.neoforged.net/releases') }
+        maven { url = uri('https://maven.shedaniel.me/') }
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    // 允许 Gradle 在找不到 JDK 21 时自动获取（例如构建机只装了 JDK 25）。
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'AntiPacketKick'
+
+// 两个平台各自独立构建：./gradlew :fabric:build / :neoforge:build
+include 'fabric'
+include 'neoforge'
